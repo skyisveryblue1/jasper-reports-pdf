@@ -1,0 +1,343 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN"
+   "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport xmlns = "http://jasperreports.sourceforge.net/jasperreports"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://jasperreports.sourceforge.net/jasperreports
+   http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+   name = "facture_helios" language = "groovy" pageWidth = "595"
+   pageHeight = "842" columnWidth = "555" leftMargin = "20" rightMargin = "20"
+   topMargin = "20" bottomMargin = "20">
+  <style name="default" isDefault="true" fontName="DejaVu Sans"/>
+   <queryString>
+      <![CDATA[]]>
+   </queryString>
+   
+   <field name = "exchangedDocumentContext" class = "java.lang.String">
+      <fieldDescription><![CDATA[exchangedDocumentContext]]></fieldDescription>
+   </field>
+	
+   <field name = "exchangedDocumentId" class = "java.lang.String">
+      <fieldDescription><![CDATA[exchangedDocument.ID.value]]></fieldDescription>
+   </field>
+  <field name = "exchangedDocumentIssueDate" class = "java.lang.String">
+      <fieldDescription><![CDATA[exchangedDocument.issueDateTime.dateTimeString.value]]></fieldDescription>
+   </field>
+   
+   
+   
+ <field name = "buyerLineOne" class = "java.lang.String">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeAgreement.buyerTradeParty.postalTradeAddress.lineOne.value]]></fieldDescription>
+   </field>
+ <field name = "buyerName" class = "java.lang.String">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeAgreement.buyerTradeParty.name.value]]></fieldDescription>
+   </field>
+ <field name = "buyerCityName" class = "java.lang.String">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeAgreement.buyerTradeParty.postalTradeAddress.cityName.value]]></fieldDescription>
+   </field>
+ <field name = "buyerCountryID" class = "java.lang.String">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeAgreement.buyerTradeParty.postalTradeAddress.countryID.value]]></fieldDescription>
+      
+   </field> <field name = "sellerLineOne" class = "java.lang.String">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeAgreement.sellerTradeParty.postalTradeAddress.lineOne.value]]></fieldDescription>
+   </field>
+ <field name = "sellerName" class = "java.lang.String">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeAgreement.sellerTradeParty.name.value]]></fieldDescription>
+   </field>
+ <field name = "sellerCityName" class = "java.lang.String">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeAgreement.sellerTradeParty.postalTradeAddress.cityName.value]]></fieldDescription>
+   </field>
+ <field name = "sellerCountryID" class = "java.lang.String">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeAgreement.sellerTradeParty.postalTradeAddress.countryID.value]]></fieldDescription>
+   </field>
+  <!-- supplyChainTradeTransaction.getIncludedSupplyChainTradeLineItem()-->
+ 
+     <field name = "subReportBeanList" class = "java.util.List">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.includedSupplyChainTradeLineItem]]></fieldDescription>
+  </field>
+  
+
+   
+     <field name = "totalHT" class = "java.math.BigDecimal">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeSettlement.specifiedTradeSettlementHeaderMonetarySummation.lineTotalAmount.value]]></fieldDescription>
+  </field>
+  
+     <field name = "totalTTC" class = "java.math.BigDecimal">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeSettlement.specifiedTradeSettlementHeaderMonetarySummation.grandTotalAmount.value]]></fieldDescription>
+  </field>
+    <field name = "TVA" class = "java.math.BigDecimal">
+      <fieldDescription><![CDATA[supplyChainTradeTransaction.applicableHeaderTradeSettlement.specifiedTradeSettlementHeaderMonetarySummation.taxTotalAmount[0].value]]></fieldDescription>
+  </field>
+  
+
+	  <title>
+      <band height = "200">
+         
+        
+         <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "0" y = "0" width = "200" height = "30"/>
+           
+            <textElement textAlignment = "Center">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA["Facture Numero : " + $F{exchangedDocumentId}]]>
+            </textFieldExpression>
+					
+            <anchorNameExpression>
+               <![CDATA["exchangedDocumentId"]]>
+            </anchorNameExpression>
+         </textField>
+             <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "300" y = "0" width = "200" height = "30"/>
+           
+            <textElement textAlignment = "Center">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA["Date de factue : " + $F{exchangedDocumentIssueDate}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["exchangedDocumentIssueDate"]]>
+            </anchorNameExpression>
+         </textField>
+               <line>
+            <reportElement x = "0" y = "30" width = "515" height = "1"/>
+         </line>
+    
+        <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "300" y = "50" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA["Acheteur"]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["acheteur"]]>
+            </anchorNameExpression>
+         </textField>
+     <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "300" y = "70" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA[$F{buyerName}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["buyerName"]]>
+            </anchorNameExpression>
+         </textField>     
+         <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "300" y = "90" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA[$F{buyerLineOne}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["buyerLineOne"]]>
+            </anchorNameExpression>
+         </textField>
+         
+        
+          
+          
+          <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "300" y = "110" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA[$F{buyerCityName}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["buyerCityName"]]>
+            </anchorNameExpression>
+         </textField>
+         
+            
+           <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "300" y = "130" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA[$F{buyerCountryID}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["buyerCountryID"]]>
+            </anchorNameExpression>
+         </textField>
+  
+        <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "00" y = "50" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA["Vendeur"]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["vendeur"]]>
+            </anchorNameExpression>
+         </textField>
+     <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "00" y = "70" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA[$F{sellerName}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["sellerName"]]>
+            </anchorNameExpression>
+         </textField>     
+         <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "0" y = "90" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA[$F{sellerLineOne}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["sellerLineOne"]]>
+            </anchorNameExpression>
+         </textField>
+         
+        
+          
+          
+          <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "00" y = "110" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA[$F{sellerCityName}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["sellerCityName"]]>
+            </anchorNameExpression>
+         </textField>
+         
+            
+           <textField isBlankWhenNull = "true" bookmarkLevel = "1">
+            <reportElement x = "00" y = "130" width = "515" height = "30"/>
+           
+            <textElement textAlignment = "Left">
+               <font size = "16"/>
+            </textElement>
+            
+            <textFieldExpression class = "java.lang.String">
+               <![CDATA[$F{sellerCountryID}]]>
+            </textFieldExpression>
+				
+            <anchorNameExpression>
+               <![CDATA["sellerCountryID"]]>
+            </anchorNameExpression>
+         </textField>
+ 
+      
+
+
+      
+      </band>
+   </title>
+ <columnHeader>
+      <band height = "21" splitType = "Stretch"/>
+   </columnHeader>
+
+ 
+    <detail>
+    <band height = "50" splitType = "Stretch">
+          
+      
+         <subreport>
+            <reportElement positionType = "Float" x = "0" y = "25" width = "375"
+               height = "20" isRemoveLineWhenBlank = "true" backcolor = "#99ccff"/>
+
+            <dataSourceExpression>
+               new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
+                  ($F{subReportBeanList})
+            </dataSourceExpression>
+            
+            <subreportExpression class = "java.lang.String">
+               <![CDATA["facture_helios_subreport.jasper"]]>
+            </subreportExpression>
+         </subreport>
+
+
+      </band>
+   </detail>
+<columnFooter>
+   	   <band height = "112" splitType = "Stretch">
+	
+       <textField>
+            <reportElement  x = "100" y = "10" width = "90" height = "20"/>
+            <textElement/>
+            
+            <textFieldExpression class = "java.lang.String">
+             <![CDATA["Total HT " + $F{totalHT}]]>
+            </textFieldExpression>
+         </textField>
+    <textField>
+            <reportElement  x = "100" y = "30" width = "90" height = "20"/>
+            <textElement/>
+            
+            <textFieldExpression class = "java.lang.String">
+             <![CDATA["TVA " + $F{TVA}]]>
+            </textFieldExpression>
+         </textField>
+            
+       <textField>
+            <reportElement  x = "100" y = "50" width = "90" height = "20"/>
+            <textElement/>
+            
+            <textFieldExpression class = "java.lang.String">
+             <![CDATA["Total TTC " + $F{totalTTC}]]>
+            </textFieldExpression>
+         </textField>
+            
+  
+      </band>
+  
+</columnFooter>
+   
+	
+</jasperReport>
